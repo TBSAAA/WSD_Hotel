@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{3BF058EC-E5EE-4E2C-B654-0CDAC4FEECC2}|Default">
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Hotel19966292" expanded="True">
+            <Node name="Hotel19966292" expanded="True">
+              <Node name="Pages" expanded="True">
+                <Node name="Error.cshtml" expanded="True" />
+                <Node name="Index.cshtml" expanded="True" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Hotel19966292 PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
