@@ -14,13 +14,27 @@ namespace Hotel19966292.Pages
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
 #line 1 "/Users/jackhuang/git/WSD_Hotel/Hotel19966292/Pages/_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "/Users/jackhuang/git/WSD_Hotel/Hotel19966292/Pages/_ViewImports.cshtml"
 using Hotel19966292;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "/Users/jackhuang/git/WSD_Hotel/Hotel19966292/Pages/_ViewImports.cshtml"
+using Hotel19966292.Data;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c8ffa67bf13ecc52588f9c2df9df1e50c8be1d11", @"/Pages/Privacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2410a76cdd91748cb7457618e420b26ec4091ab6", @"/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"152bb7f10ac6e10207ea88acb2d86e862dfc9539", @"/Pages/_ViewImports.cshtml")]
     public class Pages_Privacy : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {
         #pragma warning disable 1998
