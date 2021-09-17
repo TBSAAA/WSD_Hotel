@@ -8,7 +8,7 @@
 
 - [ ] 2. Navigation and layout( include logic)
 
-- [ ] 3. Creat model: customer, room, booking ( include manage database)
+- [x] 3. Creat model: customer, room, booking ( include manage database)
 
 - [ ] 4. Search room
 
