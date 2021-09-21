@@ -6,7 +6,7 @@
 
 - [x] 1. Home Page  :rocket:  :sparkles:
 
-- [ ] 2. Navigation and layout( include logic)
+- [x] 2. Navigation and layout( include logic)
 
 - [x] 3. Creat model: customer, room, booking ( include manage database)
 
@@ -21,15 +21,12 @@
 - [ ] 2. Manage Booking( include all mode ,page and logic)
 
 - [ ] 3. Statistics page
-
-     
+- [x] 4. My detail page
 
 ## Tammy Nair
 
-- [ ] 1. My detail page
+- [ ] 1. Book a room page
 
-- [ ] 2. Book a room page
+- [ ] 2. My booking page
 
-- [ ] 3. My booking page
-
-     
+  

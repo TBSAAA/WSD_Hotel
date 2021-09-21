@@ -10,9 +10,9 @@
     <None Remove="Models\" />
     <None Remove="Pages\Booking\" />
     <None Remove="Pages\Rooms\" />
-    <None Remove="Pages\ Customers\" />
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
+    <None Remove="Pages\Administrators\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -33,6 +33,6 @@
     <Folder Include="Models\" />
     <Folder Include="Pages\Bookings\" />
     <Folder Include="Pages\Rooms\" />
-    <Folder Include="Pages\ Customers\" />
+    <Folder Include="Pages\Administrators\" />
   </ItemGroup>
 </Project>

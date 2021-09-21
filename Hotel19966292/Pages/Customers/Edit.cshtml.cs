@@ -1,20 +1,24 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hotel19966292.Data;
 using Hotel19966292.Models;
 
 namespace Hotel19966292.Pages.Customers
 {
-    public class DeleteModel : PageModel
+    [Authorize(Roles = "administrators")]
+    public class EditModel : PageModel
     {
         private readonly Hotel19966292.Data.ApplicationDbContext _context;
 
-        public DeleteModel(Hotel19966292.Data.ApplicationDbContext context)
+        public EditModel(Hotel19966292.Data.ApplicationDbContext context)
         {
             _context = context;
         }
@@ -38,22 +42,39 @@ namespace Hotel19966292.Pages.Customers
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id)
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://aka.ms/RazorPagesCRUD.
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return Page();
             }
 
-            Customer = await _context.Customer.FindAsync(id);
+            _context.Attach(Customer).State = EntityState.Modified;
 
-            if (Customer != null)
+            try
             {
-                _context.Customer.Remove(Customer);
                 await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CustomerExists(Customer.Email))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return RedirectToPage("./Index");
+        }
+
+        private bool CustomerExists(string id)
+        {
+            return _context.Customer.Any(e => e.Email == id);
         }
     }
 }

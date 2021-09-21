@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -33,23 +35,23 @@
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Customers/MyDetails">My Details</a>
                             </li>
                             @*<li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/Search">Search Rooms</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/Create">Book a Room</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/Index">My Bookings</a>
-                            </li>*@
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/Search">Search Rooms</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/Create">Book a Room</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/Index">My Bookings</a>
+                                </li>*@
                         }
                         @if (User.IsInRole("administrators"))
                         {
                             @*<li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Bookings/Index">Manage Bookings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Admin/StatisticsPage">Statistics</a>
-                            </li>*@
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Bookings/Index">Manage Bookings</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin/StatisticsPage">Statistics</a>
+                                </li>*@
                         }
 
 
