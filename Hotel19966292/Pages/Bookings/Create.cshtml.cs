@@ -70,20 +70,17 @@ namespace Hotel19966292.Pages.Bookings
              B --------[-----]---   case 2
 
              B -------[--]-------   case 3
+
+             B --[------------]--   case 4
              
              */
-
 
             var bookedRooms = _context.Booking.FromSqlRaw("" +
                 "SELECT * " +
                 "FROM Booking " +
-                "WHERE RoomID = @RoomID ADN " +
+                "WHERE RoomID = @RoomID AND " +
                 "   CheckIn < @CheckOut AND " +
                 "   @CheckIn < CheckOut", roomID, checkIn, checkOut);
-            //var bookedRooms = _context.Booking.FromSqlRaw("" +
-            //    "SELECT * " +
-            //    "FROM Booking " +
-            //    "WHERE RoomID = @RoomID", roomID);
 
 
             BookedRooms = await bookedRooms.ToListAsync();

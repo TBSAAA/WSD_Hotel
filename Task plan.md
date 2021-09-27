@@ -12,7 +12,7 @@
 
 - [ ] 4. Search room
 
-     
+- [ ] 5. My booking page
 
 ## Haoran Huang
 
@@ -22,11 +22,5 @@
 
 - [ ] 3. Statistics page
 - [x] 4. My detail page
+- [ ] 5. Book a room page
 
-## Tammy Nair
-
-- [ ] 1. Book a room page
-
-- [ ] 2. My booking page
-
-  

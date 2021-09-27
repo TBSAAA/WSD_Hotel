@@ -27,7 +27,6 @@ All account password is "P@ssw0rd"
 
 1. Haoran Huang 	19966292
 2. Weihong Luo       19326131
-3. Tammy Nair         15136653
 
 
 
