@@ -38,6 +38,13 @@ namespace Hotel19966292.Pages.Bookings
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID");
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
             // retrieve the logged-in user's email
             // need to add "using System.Security.Claims;"
             string _email = User.FindFirst(ClaimTypes.Name).Value;
@@ -47,13 +54,6 @@ namespace Hotel19966292.Pages.Bookings
             if (customer == null)
             {
                 return RedirectToPage("../Customers/MyDetails");
-            }
-
-            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID");
-
-            if (!ModelState.IsValid)
-            {
-                return Page();
             }
             
             var roomID = new SqliteParameter("@RoomID", Booking.RoomID);
@@ -78,7 +78,13 @@ namespace Hotel19966292.Pages.Bookings
                 "SELECT * " +
                 "FROM Booking " +
                 "WHERE RoomID = @RoomID ADN " +
-                "   (CheckIn < @CheckOut AND @CheckIn < CheckOut)", roomID, checkIn, checkOut);
+                "   CheckIn < @CheckOut AND " +
+                "   @CheckIn < CheckOut", roomID, checkIn, checkOut);
+            //var bookedRooms = _context.Booking.FromSqlRaw("" +
+            //    "SELECT * " +
+            //    "FROM Booking " +
+            //    "WHERE RoomID = @RoomID", roomID);
+
 
             BookedRooms = await bookedRooms.ToListAsync();
 
@@ -109,10 +115,10 @@ namespace Hotel19966292.Pages.Bookings
                 }
 
                 ViewData["SuccessDB"] = "success";
-                ViewData["RoomID"] = booking.RoomID;
+                ViewData["Room"] = booking.RoomID;
                 ViewData["Level"] = theRoom.Level;
-                ViewData["CheckIn"] = booking.CheckIn;
-                ViewData["CheckOut"] = booking.CheckOut;
+                ViewData["CheckIn"] = booking.CheckIn.ToString("d");
+                ViewData["CheckOut"] = booking.CheckOut.ToString("d");
                 ViewData["Cost"] = booking.Cost;
 
             }
