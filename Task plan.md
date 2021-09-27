@@ -12,15 +12,15 @@
 
 - [ ] 4. Search room
 
-- [ ] 5. My booking page
+- [x] 5. My booking page
 
 ## Haoran Huang
 
-- [ ] 1. Administrator Page
+- [x] 1. Administrator Page
 
-- [ ] 2. Manage Booking( include all mode ,page and logic)
+- [x] 2. Manage Booking( include all mode ,page and logic)
 
 - [ ] 3. Statistics page
 - [x] 4. My detail page
-- [ ] 5. Book a room page
+- [x] 5. Book a room page
 

@@ -13,7 +13,7 @@ namespace Hotel19966292.Models
         [Display(Name = "Room ID")]
         public int RoomID { get; set; }
 
-        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Customer Name")]
         public string CustomerEmail { get; set; }
 
         [Display(Name = "Check In Date")]
