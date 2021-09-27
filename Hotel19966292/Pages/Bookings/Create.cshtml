@@ -1,11 +1,12 @@
 @page
 @model Hotel19966292.Pages.Bookings.CreateModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
 
-@{
-    ViewData["Title"] = "Create";
-}
+@{ ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml"; }
 
-<h1>Create</h1>
+<h2>Create</h2>
 
 <h4>Booking</h4>
 <hr />
@@ -15,11 +16,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Booking.RoomID" class="control-label"></label>
-                <select asp-for="Booking.RoomID" class ="form-control" asp-items="ViewBag.RoomID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Booking.CustomerEmail" class="control-label"></label>
-                <select asp-for="Booking.CustomerEmail" class ="form-control" asp-items="ViewBag.CustomerEmail"></select>
+                <select asp-for="Booking.RoomID" class="form-control" asp-items="ViewBag.RoomID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Booking.CheckIn" class="control-label"></label>
@@ -32,11 +29,6 @@
                 <span asp-validation-for="Booking.CheckOut" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Booking.Cost" class="control-label"></label>
-                <input asp-for="Booking.Cost" class="form-control" />
-                <span asp-validation-for="Booking.Cost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -46,6 +38,29 @@
 <div>
     <a asp-page="Index">Back to List</a>
 </div>
+
+@if ((string)ViewData["SuccessDB"] == "success")
+{
+    <hr />
+    <h5>The reservation is <strong>successful</strong>.</h5>
+    <h5>The room ID: <strong>@ViewData["RoomID"]</strong>.</h5>
+    <h5>The room Level: <strong>@ViewData["Level"]</strong>.</h5>                
+    <h5>The CheckIn Date: <strong>@ViewData["CheckIn"]</strong>.</h5>
+    <h5>The CheckOut Date: <strong>@ViewData["CheckOut"]</strong>.</h5>
+    <h5>The Cost: <strong>@ViewData["Cost"]</strong>.</h5>
+
+}
+
+
+else if ((string)ViewData["SuccessDB"] == "fail")
+{
+    <hr />
+    <h5>
+        Sorry, the reservation is <strong>unsuccessful</strong>.
+        The room has already been reserved by someone else.
+    </h5>
+}
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

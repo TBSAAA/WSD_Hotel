@@ -1,15 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Hotel19966292.Data;
 using Hotel19966292.Models;
+using Microsoft.Data.Sqlite;
 
 namespace Hotel19966292.Pages.Bookings
 {
+    [Authorize(Roles = "customers")]
     public class CreateModel : PageModel
     {
         private readonly Hotel19966292.Data.ApplicationDbContext _context;
@@ -21,27 +26,101 @@ namespace Hotel19966292.Pages.Bookings
 
         public IActionResult OnGet()
         {
-        ViewData["CustomerEmail"] = new SelectList(_context.Set<Customer>(), "Email", "Email");
-        ViewData["RoomID"] = new SelectList(_context.Room, "ID", "Level");
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID");
             return Page();
         }
 
         [BindProperty]
-        public Booking Booking { get; set; }
+        public BookingViewModel Booking { get; set; }
+        public IList<Booking> BookedRooms { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            // retrieve the logged-in user's email
+            // need to add "using System.Security.Claims;"
+            string _email = User.FindFirst(ClaimTypes.Name).Value;
+
+            Customer customer = await _context.Customer.FirstOrDefaultAsync(m => m.Email == _email);
+
+            if (customer == null)
+            {
+                return RedirectToPage("../Customers/MyDetails");
+            }
+
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID");
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+            
+            var roomID = new SqliteParameter("@RoomID", Booking.RoomID);
+            var checkIn = new SqliteParameter("@CheckIn", Booking.CheckIn);
+            var checkOut = new SqliteParameter("@CheckOut", Booking.CheckOut);
 
-            _context.Booking.Add(Booking);
-            await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            /* 
+             
+             A -----[-----]------
+             
+             B ---[-----]--------   case 1
+             
+             B --------[-----]---   case 2
+
+             B -------[--]-------   case 3
+             
+             */
+
+
+            var bookedRooms = _context.Booking.FromSqlRaw("" +
+                "SELECT * " +
+                "FROM Booking " +
+                "WHERE RoomID = @RoomID ADN " +
+                "   (CheckIn < @CheckOut AND @CheckIn < CheckOut)", roomID, checkIn, checkOut);
+
+            BookedRooms = await bookedRooms.ToListAsync();
+
+            if(BookedRooms.Count() == 0)
+            {
+
+                Room theRoom = await _context.Room.FindAsync(Booking.RoomID);
+                int days = (Booking.CheckOut - Booking.CheckIn).Days;
+
+                Booking booking = new Booking
+                {
+                    RoomID = Booking.RoomID,
+                    CustomerEmail = _email,
+                    CheckIn = Booking.CheckIn,
+                    CheckOut = Booking.CheckOut,
+                    Cost = days * theRoom.Price
+                };
+
+                _context.Booking.Add(booking);
+
+                try  // catching the conflict of editing this record concurrently
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    throw;
+                }
+
+                ViewData["SuccessDB"] = "success";
+                ViewData["RoomID"] = booking.RoomID;
+                ViewData["Level"] = theRoom.Level;
+                ViewData["CheckIn"] = booking.CheckIn;
+                ViewData["CheckOut"] = booking.CheckOut;
+                ViewData["Cost"] = booking.Cost;
+
+            }
+            else
+            {
+                ViewData["SuccessDB"] = "fail";
+            }
+            return Page();
         }
     }
 }

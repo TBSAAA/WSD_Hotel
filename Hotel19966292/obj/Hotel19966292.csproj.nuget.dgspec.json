@@ -14,7 +14,7 @@
         "outputPath": "/Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/jackhuang/.config/NuGet/NuGet.Config"
+          "/Users/jackhuang/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"

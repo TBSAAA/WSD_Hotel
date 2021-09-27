@@ -16,10 +16,12 @@ namespace Hotel19966292.Models
         [RegularExpression(@"[G123]{1}")]
         public String Level { get; set; }
 
+        [Required]
         [RegularExpression(@"[123]{1}")]
         [Display(Name = "Bed Count")]
         public int BedCount { get; set; }
 
+        [Required]
         [Range(50, 300)]
         public decimal Price { get; set; }
 
