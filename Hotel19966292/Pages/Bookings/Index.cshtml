@@ -1,39 +1,57 @@
 @page
 @model Hotel19966292.Pages.Bookings.IndexModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
 
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";}
 
-<h1>Index</h1>
+<h2>Index</h2>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Book the room</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Booking[0].CheckIn)
+                @Html.DisplayNameFor(model => model.Booking[0].TheCustomer.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].TheCustomer.GivenName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].RoomID)
+            </th>
+            <th>
+                <a asp-page="Index" asp-route-sortorder="@ViewData["NextCheckIn"]">
+                    @Html.DisplayNameFor(model => model.Booking[0].CheckIn)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Booking[0].CheckOut)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Cost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].TheRoom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].TheCustomer)
+                <a asp-page="Index" asp-route-sortorder="@ViewData["NextCost"]">
+                    @Html.DisplayNameFor(model => model.Booking[0].Cost)
+                </a>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Booking) {
+@foreach (var item in Model.Booking)
+{
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TheCustomer.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TheCustomer.GivenName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CheckIn)
             </td>
@@ -43,18 +61,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Cost)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TheRoom.Level)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TheCustomer.Email)
-            </td>
-            <td>
+            @*<td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+            </td>*@
+        </tr>}
     </tbody>
 </table>
