@@ -1,16 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hotel19966292.Data;
 using Hotel19966292.Models;
+using Microsoft.Data.Sqlite;
 
 namespace Hotel19966292.Pages.Bookings
 {
+    [Authorize(Roles = "administrators")]
     public class EditModel : PageModel
     {
         private readonly Hotel19966292.Data.ApplicationDbContext _context;
@@ -21,6 +25,8 @@ namespace Hotel19966292.Pages.Bookings
         }
 
         [BindProperty]
+        //public BookingViewModel BookingModify { get; set; }
+        public IList<Booking> BookedRooms { get; set; }
         public Booking Booking { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -52,25 +58,97 @@ namespace Hotel19966292.Pages.Bookings
                 return Page();
             }
 
-            _context.Attach(Booking).State = EntityState.Modified;
+            ViewData["CustomerEmail"] = new SelectList(_context.Set<Customer>(), "Email", "FullName");
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID");
 
-            try
+            var roomID = new SqliteParameter("@RoomID", Booking.RoomID);
+            var checkIn = new SqliteParameter("@CheckIn", Booking.CheckIn);
+            var checkOut = new SqliteParameter("@CheckOut", Booking.CheckOut);
+
+            /* 
+             
+             A -----[-----]------
+             
+             B ---[-----]--------   case 1
+             
+             B --------[-----]---   case 2
+
+             B -------[--]-------   case 3
+
+             B --[------------]--   case 4
+             
+             */
+
+            var bookedRooms = _context.Booking.FromSqlRaw("" +
+                "SELECT * " +
+                "FROM Booking " +
+                "WHERE RoomID = @RoomID AND " +
+                "   CheckIn < @CheckOut AND " +
+                "   @CheckIn < CheckOut", roomID, checkIn, checkOut);
+
+
+            BookedRooms = await bookedRooms.ToListAsync();
+
+            if (BookedRooms.Count() == 0)
             {
-                await _context.SaveChangesAsync();
+                Booking booking = new Booking
+                {
+                    RoomID = Booking.RoomID,
+                    CustomerEmail = Booking.CustomerEmail,
+                    CheckIn = Booking.CheckIn,
+                    CheckOut = Booking.CheckOut,
+                    Cost = Booking.Cost
+                };
+
+                _context.Attach(booking).State = EntityState.Modified;
+
+                try  // catching the conflict of editing this record concurrently
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!BookingExists(Booking.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return RedirectToPage("./AdminIndex");
             }
-            catch (DbUpdateConcurrencyException)
+            else
             {
-                if (!BookingExists(Booking.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                ViewData["SuccessDB"] = "fail";
             }
 
-            return RedirectToPage("./AdminIndex");
+            return Page();
+
+
+
+
+            //_context.Attach(Booking).State = EntityState.Modified;
+
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!BookingExists(Booking.ID))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+            //return RedirectToPage("./AdminIndex");
         }
 
         private bool BookingExists(int id)

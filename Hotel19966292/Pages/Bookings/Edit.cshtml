@@ -1,9 +1,7 @@
 @page
 @model Hotel19966292.Pages.Bookings.EditModel
 
-@{
-    ViewData["Title"] = "Edit";
-}
+@{ ViewData["Title"] = "Edit"; }
 
 <h1>Edit</h1>
 
@@ -49,6 +47,16 @@
 <div>
     <a asp-page="./AdminIndex">Back to List</a>
 </div>
+
+@if ((string)ViewData["SuccessDB"] == "fail")
+{
+    <hr />
+    <h5>
+        Sorry, the reservation is <strong>unsuccessful</strong>.
+        The room has already been reserved by someone else.
+    </h5>
+}
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
