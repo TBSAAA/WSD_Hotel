@@ -14,7 +14,7 @@ using Microsoft.Data.Sqlite;
 
 namespace Hotel19966292.Pages.Customers
 {
-    [Authorize(Roles = "administrators, customers")]
+    [Authorize(Roles = "customers")]
     public class SearchModel : PageModel
     {
         private readonly Hotel19966292.Data.ApplicationDbContext _context;

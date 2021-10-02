@@ -10,6 +10,7 @@ using Hotel19966292.Models;
 
 namespace Hotel19966292.Pages.Rooms
 {
+    [Authorize(Roles = "administrators")]
     public class CreateModel : PageModel
     {
         private readonly Hotel19966292.Data.ApplicationDbContext _context;
