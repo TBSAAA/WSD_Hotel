@@ -10,6 +10,8 @@ namespace Hotel19966292.Models
 {
     public class BookingViewModel
     {
+        public int ID { get; set; }
+
         [Display(Name = "Room ID")]
         public int RoomID { get; set; }
 
@@ -18,12 +20,12 @@ namespace Hotel19966292.Models
 
         [Display(Name = "Check In Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CheckIn { get; set; }
 
         [Display(Name = "Check Out Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CheckOut { get; set; }
 
         public decimal Cost { get; set; }

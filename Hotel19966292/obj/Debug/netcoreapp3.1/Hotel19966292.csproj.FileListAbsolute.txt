@@ -286,8 +286,6 @@ F:/WSD project/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Hotel19966292.gen
 /Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Rooms/Index.cshtml.g.cs
 /Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Bookings/Create.cshtml.g.cs
 /Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Bookings/Delete.cshtml.g.cs
-/Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Bookings/Details.cshtml.g.cs
-/Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Bookings/Edit.cshtml.g.cs
 /Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Bookings/Index.cshtml.g.cs
 Z:/WSD_Hotel/Hotel19966292/bin/Debug/netcoreapp3.1/appsettings.Development.json
 Z:/WSD_Hotel/Hotel19966292/bin/Debug/netcoreapp3.1/appsettings.json
@@ -535,5 +533,5 @@ Z:/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Hotel19966292.genruntimeconfi
 /Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Customers/Edit.cshtml.g.cs
 /Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Customers/Index.cshtml.g.cs
 /Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Customers/MyDetails.cshtml.g.cs
-/Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Bookings/AdminCreate.cshtml.g.cs
 /Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Bookings/AdminIndex.cshtml.g.cs
+/Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Bookings/AdminCreatAndEdit.cshtml.g.cs

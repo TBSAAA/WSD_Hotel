@@ -28,13 +28,13 @@ namespace Hotel19966292.Models
         [Required]
         [Display(Name = "Check In Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CheckIn { get; set; }
 
         [Required]
         [Display(Name = "Check Out Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CheckOut { get; set; }
 
         public decimal Cost { get; set; }

@@ -1,0 +1,75 @@
+﻿@page
+@model Hotel19966292.Pages.Bookings.AdminCreatAndEditModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+@{ ViewData["Title"] = "AdminEditAndCreate";
+    Layout = "~/Pages/Shared/_Layout.cshtml"; }
+
+@if ((string)ViewData["ExistInDB"] == "false")
+{
+    <h2>Creat</h2>
+}
+else if ((string)ViewData["ExistInDB"] == "true")
+{
+    <h2>Edit</h2>
+}
+<h4>Booking</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if ((string)ViewData["ExistInDB"] == "true")
+            {
+                <input type="hidden" asp-for="Myself.ID" />
+            }
+            <div class="form-group">
+                <label asp-for="Myself.RoomID" class="control-label"></label>
+                <select asp-for="Myself.RoomID" class="form-control" asp-items="ViewBag.RoomID"></select>
+                <span asp-validation-for="Myself.RoomID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Myself.CustomerEmail" class="control-label"></label>
+                <select asp-for="Myself.CustomerEmail" class="form-control" asp-items="ViewBag.CustomerEmail"></select>
+                <span asp-validation-for="Myself.CustomerEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Myself.CheckIn" class="control-label"></label>
+                <input asp-for="Myself.CheckIn" class="form-control" />
+                <span asp-validation-for="Myself.CheckIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Myself.CheckOut" class="control-label"></label>
+                <input asp-for="Myself.CheckOut" class="form-control" />
+                <span asp-validation-for="Myself.CheckOut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Myself.Cost" class="control-label"></label>
+                <input asp-for="Myself.Cost" class="form-control" />
+                <span asp-validation-for="Myself.Cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./AdminIndex">Back to List</a>
+</div>
+
+@if ((string)ViewData["SuccessDB"] == "fail")
+{
+    <hr />
+    <h5>
+        Sorry, the reservation is <strong>unsuccessful</strong>.
+        The room has already been reserved by someone else.
+    </h5>
+}
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

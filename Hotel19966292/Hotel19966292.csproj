@@ -12,7 +12,6 @@
     <None Remove="Pages\Rooms\" />
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
-    <None Remove="Pages\Administrators\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -33,6 +32,5 @@
     <Folder Include="Models\" />
     <Folder Include="Pages\Bookings\" />
     <Folder Include="Pages\Rooms\" />
-    <Folder Include="Pages\Administrators\" />
   </ItemGroup>
 </Project>
