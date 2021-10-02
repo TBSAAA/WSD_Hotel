@@ -1,0 +1,69 @@
+﻿@page
+@model Hotel19966292.Pages.Bookings.StatisticsModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+@{ ViewData["Title"] = "Statistics";
+    Layout = "~/Pages/Shared/_Layout.cshtml"; }
+
+<h2>Customer distribution with respect to postcodes</h2>
+<br />
+
+<div>
+    @* .table is a Bootstrap class giving table styles *@
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(n => n.CustomerStats[0].PostCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(n => n.CustomerStats[0].CustomersCount)
+            </th>
+        </tr>
+
+        @foreach (var item in Model.CustomerStats)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomersCount)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
+
+
+<h2>Booking distribution with respect to rooms</h2>
+<br />
+
+<div>
+    @* .table is a Bootstrap class giving table styles *@
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(n => n.RoomStats[0].RoomID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(n => n.RoomStats[0].RoomBookingCount)
+            </th>
+        </tr>
+
+        @foreach (var item in Model.RoomStats)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomBookingCount)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

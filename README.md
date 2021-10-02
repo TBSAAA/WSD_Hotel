@@ -14,6 +14,8 @@ All account password is "P@ssw0rd"
 8. acc8@gomahotel.com
 9. acc9@gomahotel.com
 10. acc10@gomahotel.com
+11. acc11@gomahotel.com
+12. acc12@gomahotel.com
 
 ----
 

@@ -535,3 +535,4 @@ Z:/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Hotel19966292.genruntimeconfi
 /Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Customers/MyDetails.cshtml.g.cs
 /Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Bookings/AdminIndex.cshtml.g.cs
 /Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Bookings/AdminCreatAndEdit.cshtml.g.cs
+/Users/jackhuang/git/WSD_Hotel/Hotel19966292/obj/Debug/netcoreapp3.1/Razor/Pages/Bookings/Statistics.cshtml.g.cs
