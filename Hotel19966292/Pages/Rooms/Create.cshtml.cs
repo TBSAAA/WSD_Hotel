@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Hotel19966292.Data;
 using Hotel19966292.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hotel19966292.Pages.Rooms
 {
